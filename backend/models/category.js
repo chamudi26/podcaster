@@ -18,4 +18,4 @@ const category =new mongoose.Schema(
     },
     {timestamps:true}
 );
-module.exports=mongoose.model("podcasts",podcasts);
+module.exports=mongoose.model("category",category);
