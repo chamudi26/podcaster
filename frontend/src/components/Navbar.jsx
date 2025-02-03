@@ -1,26 +1,26 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { IoReorderThreeOutline } from "react-icons/io5";
-import { ImCross } from "react-icons/im";
+import { RxCross2 } from "react-icons/rx";
 //console.log(MobileNav);
 const Navbar = () => {
-const [MobileNav,setMobileNav]=useState(false);
+const [MobileNav,setMobileNav,closeMobileNav]=useState(false);
 
     const navLinks=[
     {
-        name:"Home",
+        name:"HOME",
         path:"/",
     },
     {
-        name:"Categories",
+        name:"CATEGORIES",
         path:"/categories",
     },
     {
-        name:"All Podcasts",
+        name:"ALL PODCASTS",
         path:"/profile",
     },
     {
-        name:"Profile",
+        name:"PROFILE",
         path:"/all-Podcasts",
     },
 ];
@@ -29,53 +29,51 @@ const [MobileNav,setMobileNav]=useState(false);
         <div className='flex items-center justify-between'>
         <div className='logo brand-name w-2/6 flex items-center '>
         <img 
-        src="https://png.pngtree.com/template/20190925/ourmid/pngtree-podcast-logo-image_307846.jpg"
+        src="https://cdn-icons-png.flaticon.com/512/5077/5077327.png"
         alt=''
-        className='h-22'
+        className='px-3 h-14'
         />
-            <Link to="/" className='text-2xl font-bold' >
-            Podcaster
+            <Link to="/" className='text-2xl font-bold px-2' >
+            PODCASTER
             </Link>
         </div>
         <div className='hidden w-2/6 lg:flex items-center justify-center'>
         {navLinks.map((items,i)=>(
-            <Link key={i} to={items.path} className='ms-4 hover:font-semibold transition-all duration-300'>
+            <Link key={i} to={items.path} className='px-4 ms-4  hover:text-teal-500 transition-all duration-300'>
                 {items.name}
             </Link>
         ))}</div>
-        <div className='hidden w-2/6 lg:flex items-center justify-end'>
-        <Link className='px-6 py-3 border border-black rounded-full'>
-        Login
+        <div className='hidden w-2/6 lg:flex  items-center justify-end'>
+        <Link className='px-6 py-3 border border-teal-400 rounded-full hover:bg-teal-200 transition-all duration-300'>
+        LOGIN
         </Link>
-        <Link className='ms-4 px-6 py-3 bg-black rounded-full text-white'>
-        SignUp
+        <Link className='ms-4 px-6 py-3 bg-teal-400 hover:bg-teal-200 border border-teal-200 hover:border-teal-600 rounded-full text-black transition-all duration-300'>
+        SIGNUP
         </Link>
         </div>
-        <div className='w-4/6 flex items-center justify-end lg:hidden z-[1000]'>
-        <button className='text-4xl' onClick={() => setMobileNav(!MobileNav)}>
-            <IoReorderThreeOutline />
+        <div className='w-4/6 flex items-center justify-end lg:hidden z-50'>
+        <button className={`text-4xl transform ${
+            MobileNav ? "rotate-[360deg]" : "rotate-180"
+        }transition-all duration-300`}
+        onClick={() => setMobileNav(!MobileNav)}>
+           {MobileNav ? <RxCross2 /> : <IoReorderThreeOutline />} 
         </button>
         </div>
         </div>
 
         <div 
         className={`fixed top-0 left-0 w-full h-screen bg-blue-100 ${
-            MobileNav ? "translate-y-[0%]" : "translate-y-[-100%]"
-        } transition-all duration-500 `}
+            MobileNav ? "translate-y-0" : "translate-y-[-100%]"
+        } transition-transform duration-500 ease-in-out `}
         >
-            <div className='p-4 mt-6 flex items-center justify-end text-1xl z-[2000]'>
-                <button 
-                onClick={()=>setMobileNav(!MobileNav)}
-                className='bg-black text-white rounded-full p-2'>
-                    <ImCross />
-                </button>
-            </div>
+           
         <div className='h-full flex flex-col items-center justify-center'>
             {" "}
             {navLinks.map((items,i)=>(
             <Link key={i} 
              to={items.path} 
              className='mb-8 text-2xl hover:font-semibold transition-all duration-300'
+             onClick={closeMobileNav}
             >
                 {items.name}
             </Link>
