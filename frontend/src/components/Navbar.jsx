@@ -17,12 +17,13 @@ const [MobileNav,setMobileNav,closeMobileNav]=useState(false);
     },
     {
         name:"ALL PODCASTS",
-        path:"/profile",
+        path:"/all-Podcasts",
     },
     {
         name:"PROFILE",
-        path:"/all-Podcasts",
+        path:"/profile",
     },
+   
 ];
   return (
     <nav className='px-2 md:px-8 lg:px-4 py-2 relative'>
@@ -44,10 +45,10 @@ const [MobileNav,setMobileNav,closeMobileNav]=useState(false);
             </Link>
         ))}</div>
         <div className='hidden w-2/6 lg:flex  items-center justify-end'>
-        <Link className='px-6 py-3 border border-teal-400 rounded-full hover:bg-teal-200 transition-all duration-300'>
+        <Link to="/login" className='px-6 py-3 border border-teal-400 rounded-full hover:bg-teal-200 transition-all duration-300'>
         LOGIN
         </Link>
-        <Link className='ms-4 px-6 py-3 bg-teal-400 hover:bg-teal-200 border border-teal-200 hover:border-teal-600 rounded-full text-black transition-all duration-300'>
+        <Link to="/signup" className='ms-4 px-6 py-3 bg-teal-400 hover:bg-teal-200 border border-teal-200 hover:border-teal-600 rounded-full text-black transition-all duration-300'>
         SIGNUP
         </Link>
         </div>
