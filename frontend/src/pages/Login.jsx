@@ -3,8 +3,11 @@ import { Link, useNavigate } from 'react-router-dom'
 import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
+import { useDispatch } from 'react-redux';
+import {authActions} from "../store/auth";
 
 const Login = () => {
+    const dispatch=useDispatch();
     const navigate= useNavigate();
   const[Values,setValues]=useState({
     
@@ -22,7 +25,8 @@ const handleSubmit=async () => {
         "http://localhost:1000/api/v1/sign-in",
         Values,
         {withCredentials: true });
-        console.log(res.data);
+        dispatch(authActions.login());
+        //console.log(res.data);
         toast.success(res.data.message);
         navigate("/profile");
     } catch (error) {

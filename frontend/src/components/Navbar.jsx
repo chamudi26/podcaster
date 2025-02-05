@@ -2,8 +2,12 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { IoReorderThreeOutline } from "react-icons/io5";
 import { RxCross2 } from "react-icons/rx";
+import {useSelector} from "react-redux";
 //console.log(MobileNav);
 const Navbar = () => {
+const isLoggedIn=useSelector((state)=>state.auth.isLoggedIn);
+
+
 const [MobileNav,setMobileNav,closeMobileNav]=useState(false);
 
     const navLinks=[
@@ -19,10 +23,7 @@ const [MobileNav,setMobileNav,closeMobileNav]=useState(false);
         name:"ALL PODCASTS",
         path:"/all-Podcasts",
     },
-    {
-        name:"PROFILE",
-        path:"/profile",
-    },
+   
    
 ];
   return (
@@ -45,12 +46,19 @@ const [MobileNav,setMobileNav,closeMobileNav]=useState(false);
             </Link>
         ))}</div>
         <div className='hidden w-2/6 lg:flex  items-center justify-end'>
+        {!isLoggedIn && (<>
         <Link to="/login" className='px-6 py-3 border border-teal-400 rounded-full hover:bg-teal-200 transition-all duration-300'>
         LOGIN
         </Link>
         <Link to="/signup" className='ms-4 px-6 py-3 bg-teal-400 hover:bg-teal-200 border border-teal-200 hover:border-teal-600 rounded-full text-black transition-all duration-300'>
         SIGNUP
         </Link>
+        </>)}
+        {isLoggedIn && (
+            <Link to="/profile" className='px-6 py-3 border border-teal-400 rounded-full hover:bg-teal-200 transition-all duration-300'>
+            PROFILE
+            </Link>
+        )}
         </div>
         <div className='w-4/6 flex items-center justify-end lg:hidden z-50'>
         <button className={`text-4xl transform ${
