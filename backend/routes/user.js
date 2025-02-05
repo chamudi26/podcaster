@@ -109,10 +109,10 @@ router.post("/logout",async(req,res)=>{
 router.get("/check-cookie",async(req,res)=>{
     const token=req.cookies.podcasterUserToken;
     if(token){
-        res.status(200).json({message:true});
+        return res.status(200).json({message:true});
 
     }
-    res.status(200).json({message:false});
+    //return res.status(200).json({message:false});
 });
 
 //route to fetch user details
