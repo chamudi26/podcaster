@@ -1,7 +1,7 @@
 const jwt=require("jsonwebtoken");
 const User=require("../models/user");
 
-const authMiddleware=async(requestAnimationFrame,resizeBy,next)=>{
+const authMiddleware=async(req,res,next)=>{
     const token=req.cookies.podcasterUserToken;
     try {
         if(token){

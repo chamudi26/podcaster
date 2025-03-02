@@ -15,7 +15,7 @@ router.post("/add-podcast",authMiddleware,upload, async(req,res)=>{
     if(!title || !description || !category || !frontImage || !audioFile){
         return res.status(400).json({message:"All fields are required"});
     }
-    const{usser}=req;
+    const{user}=req;
     const cat=await Category.findOne({categoryName:category});
     if(!cat)
     {
@@ -30,7 +30,7 @@ router.post("/add-podcast",authMiddleware,upload, async(req,res)=>{
         category:catid,
         frontImage,
         audioFile,
-        userid
+        user:userid,
     });
     await newPodcast.save();
     await Category.findByIdAndUpdate(catid,{
