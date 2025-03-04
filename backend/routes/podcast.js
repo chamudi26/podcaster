@@ -91,7 +91,7 @@ router.get("/get-podcast/:id",async(req,res)=>{
 });
 
 //get podcast by id categories
-router.get("/categoryt/:cat",async(req,res)=>{
+router.get("/category/:cat",async(req,res)=>{
     try {
         const{cat}=req.params;
         const categories=await category.find({categoryName:cat}).populate(
